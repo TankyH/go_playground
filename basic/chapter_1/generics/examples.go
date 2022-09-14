@@ -2,8 +2,6 @@ package generics
 
 import "fmt"
 
-type MyInt int
-
 type MyType struct {
 	Name string
 	Type int
@@ -40,17 +38,20 @@ func TypeGeneric[T any](i T) {
 
 // Compare 使用 comparable 关键字进行比较
 func Compare[T MyGenericType](a, b T) T {
-	if b < a {
+	if b > a {
 		return b
 	}
 	return a
 }
+
+type MyInt int
 
 type MyGenericType interface {
 	~int | float32 | float64 | string
 	// ~ 是泛指 int 的类型, 比如我们之前定义的 MyInt
 }
 
+// type paramters
 func MinGenerate[T MyGenericType](a, b T) T {
 	return Compare(a, b)
 }

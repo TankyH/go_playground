@@ -10,9 +10,9 @@ func TestAnimal(t *testing.T) {
 	animal = NewAnimal("MR. Nobody")
 	animal.Run()
 
-	var duck1 Creature
-	duck1 = Duck{}
-	t.Log(duck1)
+	//var duck1 Creature
+	//duck1 = Duck{}
+	//t.Log(duck1)
 
 	// init
 	duck := Duck{
@@ -56,5 +56,5 @@ func TestReceiver(t *testing.T) {
 	// 值接受器
 	// 不需要维护属性的场景, 并发安全, 语义明确, 对于大struct会有copy开销
 
-	// 对于小struct, 和基本类型, GC 开销不大, 这时值/指针接收器差别不大
+	// 开销而言, 对于小struct, 和基本类型, GC 开销不大, 这时值/指针接收器差别不大
 }

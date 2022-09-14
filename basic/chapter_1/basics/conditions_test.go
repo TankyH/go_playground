@@ -80,7 +80,7 @@ func TestLoop(t *testing.T) {
 	fmt.Println("------")
 
 	i := 0
-	for { // while
+	for { // 相当于 while true
 		if i >= 5 {
 			break
 		}

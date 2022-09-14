@@ -22,7 +22,7 @@ func TestTypes(t *testing.T) {
 
 	mi := myInt(1) // 自定义一个 "int" 类型
 	t.Log(mi)
-	//t.Log(a == mi) 自定义的 MyInt 不能直接和 int 比较
+	//t.Log(a == mi) // 自定义的 MyInt 不能直接和 int 比较
 
 	// float
 	var (
@@ -62,6 +62,7 @@ func TestArray(t *testing.T) {
 	a := [3]int{1, 2, 3}   // 指定长度
 	b := [...]int{1, 2, 3} // 懒得数了, ...自动定长度
 
+	// forEach
 	for i := range b {
 		t.Log(i)
 	}
@@ -78,6 +79,7 @@ func TestArray(t *testing.T) {
 	//t.Log(a == c)   // 长度不同的比较
 }
 
+// Slice 切片
 func TestSlice(t *testing.T) {
 	//slice len, cap
 	a := []int{1, 2, 3}    // slice
@@ -88,12 +90,13 @@ func TestSlice(t *testing.T) {
 		a = append(a, i)
 		t.Logf("a: %v, len: %v, cap: %v", a, len(a), cap(a))
 	}
+	t.Logf("------")
 
-	for i := 0; i < 10; i++ {
-		// 数组是定长的
-		//b = append(b, i)
-		t.Logf("b: %v, len: %v, cap: %v", b, len(b), cap(b))
-	}
+	//for i := 0; i < 10; i++ {
+	//	// 数组是定长的
+	//	b = append(b, i)
+	//	t.Logf("b: %v, len: %v, cap: %v", b, len(b), cap(b))
+	//}
 
 	for i := range b {
 		a = append(a, i)
@@ -107,8 +110,10 @@ func TestSlice(t *testing.T) {
 	//t.Log(a == b) // slice, array 不能直接比较
 }
 
+// Map
 func TestMap(t *testing.T) {
-	m := make(map[string]int)
+	//m := new(map[string]int)  // new pointer
+	m := make(map[string]int) // make map object
 	m["a"] = 1
 	fmt.Printf("m: %+v\n", m)
 	fmt.Println("=====")
@@ -117,13 +122,14 @@ func TestMap(t *testing.T) {
 		"a": 1,
 	}
 	// check key exist
-	if v, err := m1["a"]; err {
-		fmt.Printf("err: %v, v: %v\n", err, v)
+	if v, ok := m1["a"]; ok {
+		fmt.Printf("err: %v, v: %v\n", ok, v)
 	}
-	if v, err := m1["key_not_exists"]; err {
-		fmt.Printf("err: %v, v: %v\n", err, v)
+	// check key not exist
+	if v, ok := m1["xxx"]; ok {
+		fmt.Printf("err: %v, v: %v\n", ok, v)
 	} else {
-		fmt.Println("key not exists")
+		fmt.Printf("not exists\n")
 	}
 
 	fmt.Println("=====")
@@ -134,6 +140,7 @@ func TestMap(t *testing.T) {
 	}
 }
 
+// Set golang 没有set
 func TestSet(t *testing.T) {
 	// go 没有 set 结构, 用 map 代替
 	set := map[string]bool{
@@ -145,8 +152,4 @@ func TestSet(t *testing.T) {
 	} else {
 		fmt.Println("key not exists")
 	}
-}
-
-func TestStruct(t *testing.T) {
-
 }
