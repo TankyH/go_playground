@@ -14,7 +14,7 @@ type myInt int
  * 顺便也看看 unit test 怎么 assert.
  * go build 不会编译 test, 不需要担心测试写多了会影响编译速度
  */
-func TestBasicType(t *testing.T) {
+func TestTypes(t *testing.T) {
 
 	// int
 	var a int
@@ -62,10 +62,8 @@ func TestBasicType(t *testing.T) {
 
 func TestArray(t *testing.T) {
 	// 数组是定长的
-	a := [3]int{1, 2, 3}
-	b := [...]int{1, 2, 3}
-	c := [...]int{1, 2, 3, 4}
-	d := [...]myInt{1, 2, 3}
+	a := [3]int{1, 2, 3}   // 指定长度
+	b := [...]int{1, 2, 3} // 懒得数了, ...自动定长度
 
 	for i := range b {
 		t.Log(i)
@@ -74,6 +72,8 @@ func TestArray(t *testing.T) {
 	t.Log(&a == &b) // 指针地址比较
 	t.Log(unsafe.Pointer(&a), unsafe.Pointer(&b))
 
+	c := [...]int{1, 2, 3, 4} // 不同长度可以比较吗
+	d := [...]myInt{1, 2, 3}  // 同时 ~int 能比较吗
 	t.Log(c, d)
 
 	//t.Log(a == d) // 自定义的 MyInt 也不能直接和 int 比较
@@ -150,8 +150,6 @@ func TestSet(t *testing.T) {
 	}
 }
 
-func TestFunc(t *testing.T) {
-	f := func(i int) int { return i }
-	t.Logf("%T\n", f)
-	t.Log(f(1))
+func TestStruct(t *testing.T) {
+
 }

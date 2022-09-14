@@ -6,9 +6,13 @@ import (
 )
 
 func TestCondition(t *testing.T) {
-	var a, b = 1, 2
-	if a == b {
-		fmt.Printf("a: %d == b: %d\n", a, b)
+	var a, b = RandomInt(5), RandomInt(5)
+	if a > b {
+		fmt.Printf("a: %d > b: %d\n", a, b)
+	} else if a < b {
+		fmt.Printf("a: %d < b: %d\n", a, b)
+	} else {
+		fmt.Printf("a: %d = b: %d\n", a, b)
 	}
 
 	s := ""

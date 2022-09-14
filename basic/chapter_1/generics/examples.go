@@ -2,6 +2,8 @@ package generics
 
 import "fmt"
 
+type MyInt int
+
 type MyType struct {
 	Name string
 	Type int
@@ -43,6 +45,7 @@ func Compare[T comparable](a, b T) bool {
 
 type MyGenericType interface {
 	~int | float64 | string
+	// ~ 是泛指 int 的类型, 比如我们之前定义的 MyInt
 }
 
 func MyGeneric[T MyGenericType](a, b T) T {
