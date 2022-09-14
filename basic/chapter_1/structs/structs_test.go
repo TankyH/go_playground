@@ -10,7 +10,10 @@ func TestAnimal(t *testing.T) {
 	animal = NewAnimal("MR. Nobody")
 	animal.Run()
 
-	//var duck Creature
+	var duck1 Creature
+	duck1 = Duck{}
+	t.Log(duck1)
+
 	// init
 	duck := Duck{
 		Animal: &Animal{

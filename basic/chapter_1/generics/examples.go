@@ -39,16 +39,18 @@ func TypeGeneric[T any](i T) {
 }
 
 // Compare 使用 comparable 关键字进行比较
-func Compare[T comparable](a, b T) bool {
-	return a == b
+func Compare[T MyGenericType](a, b T) T {
+	if b < a {
+		return b
+	}
+	return a
 }
 
 type MyGenericType interface {
-	~int | float64 | string
+	~int | float32 | float64 | string
 	// ~ 是泛指 int 的类型, 比如我们之前定义的 MyInt
 }
 
-func MyGeneric[T MyGenericType](a, b T) T {
-
-	return a
+func MinGenerate[T MyGenericType](a, b T) T {
+	return Compare(a, b)
 }

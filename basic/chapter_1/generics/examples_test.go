@@ -35,10 +35,17 @@ func TestTypeGeneric(t *testing.T) {
 }
 
 func TestCompare(t *testing.T) {
-	var a int
-	var b = 2
+	a, b := 1, 2
+	mi := MyInt(1)
+	mi2 := MyInt(2)
 	var c float32
-	t.Log(Compare(a, b))
-	//t.Log(Compare(a, c))
-	t.Log(a, b, c)
+	var d float64
+
+	t.Log(MinGenerate(a, b))
+	t.Log(MinGenerate(mi, mi2))
+	//t.Log(MinGenerate(a, mi)) // ~int 类型不同也是不能直接比较
+	//t.Log(Compare(c, d)) // 同理, float32, float64 不能比较
+
+	t.Log("-------")
+	t.Log(a, b, c, d)
 }

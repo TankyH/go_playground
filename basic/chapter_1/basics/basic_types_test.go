@@ -2,7 +2,6 @@ package basics
 
 import (
 	"fmt"
-	"github.com/stretchr/testify/assert"
 	"testing"
 	"unsafe"
 )
@@ -19,8 +18,6 @@ func TestTypes(t *testing.T) {
 	// int
 	var a int
 	b := 0 // go 编译器自动类型推断, 不需要显式的指定 int
-
-	assert.Equal(t, a, b)
 	t.Log(a, b)
 
 	mi := myInt(1) // 自定义一个 "int" 类型
