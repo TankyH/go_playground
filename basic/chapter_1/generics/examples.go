@@ -36,19 +36,22 @@ func TypeGeneric[T any](i T) {
 	//}
 }
 
-// Compare 使用 comparable 关键字进行比较
-func Compare[T MyGenericType](a, b T) T {
-	if b > a {
-		return b
-	}
-	return a
-}
-
 type MyInt int
 
 type MyGenericType interface {
 	~int | float32 | float64 | string
 	// ~ 是泛指 int 的类型, 比如我们之前定义的 MyInt
+}
+
+// Compare 使用 comparable 关键字进行比较,
+// 但 comparable 只支持 ==, !=, 不能 >, <, >=, <=
+// 需要用到自定义的类型来比较
+//func Compare[T comparable](a, b T) T {
+func Compare[T MyGenericType](a, b T) T {
+	if b > a {
+		return b
+	}
+	return a
 }
 
 // type paramters
