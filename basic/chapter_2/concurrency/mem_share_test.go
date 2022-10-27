@@ -14,6 +14,7 @@ func TestGoroutine(t *testing.T) {
 		}()
 	}
 	time.Sleep(time.Second * 1)
+	// 不是线程安全的
 	t.Log(counter)
 }
 
@@ -28,7 +29,7 @@ func TestGoroutine2(t *testing.T) {
 	t.Log(counter)
 }
 
-func TestGoroutine3(t *testing.T) {
+func TestMutex(t *testing.T) {
 	counter := 0
 	mux := sync.Mutex{}
 	for i := 0; i < 5000; i++ {
@@ -38,11 +39,12 @@ func TestGoroutine3(t *testing.T) {
 			counter++
 		}()
 	}
+	// 为了让输出可以先出来, 这里sleep 一下
 	time.Sleep(time.Second * 1)
 	t.Log(counter)
 }
 
-func TestGoroutine4(t *testing.T) {
+func TestWaitGroupWithMutex(t *testing.T) {
 	counter := 0
 	mux := sync.Mutex{}
 	wg := sync.WaitGroup{}
@@ -58,5 +60,26 @@ func TestGoroutine4(t *testing.T) {
 		}()
 	}
 	wg.Wait()
+	// 用waitgroup, 可以不用sleep了
 	t.Log(counter)
 }
+
+//func TestWaitGroupWithChan(t *testing.T) {
+//	counter := 0
+//	mux := sync.Mutex{}
+//	wg := sync.WaitGroup{}
+//	for i := 0; i < 5000; i++ {
+//		wg.Add(1)
+//		go func() {
+//			defer func() {
+//				mux.Unlock()
+//				wg.Done()
+//			}()
+//			mux.Lock()
+//			counter++
+//		}()
+//	}
+//	wg.Wait()
+//	// 用waitgroup, 可以不用sleep了
+//	t.Log(counter)
+//}

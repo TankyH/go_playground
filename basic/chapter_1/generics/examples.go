@@ -48,7 +48,8 @@ type MyGenericType interface {
 // 需要用到自定义的类型来比较
 //func Compare[T comparable](a, b T) T {
 func Compare[T MyGenericType](a, b T) T {
-	if b > a {
+	//	if b == a {
+	if b < a {
 		return b
 	}
 	return a
